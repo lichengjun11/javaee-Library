@@ -29,6 +29,9 @@ public class UserAction extends HttpServlet {
         if ("login".equals(action)){
             login(req,resp);
         }
+        if ("logout".equals(action)){
+            logout(req,resp);
+        }
     }
 
     private void register(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -89,12 +92,12 @@ public class UserAction extends HttpServlet {
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()){
                 String role = resultSet.getString("role");
-                if ("用户".equals(role)){
                 req.getSession().setAttribute("username", resultSet.getString("username"));
+                req.getSession().setAttribute("role",role);
+                if ("用户".equals(role)){
                 resp.sendRedirect("index.jsp");
                 return;
                 }if("管理员".equals(role)){
-                    req.getSession().setAttribute("username", resultSet.getString("username"));
                     resp.sendRedirect("admin.jsp");
                     return;
                 }
@@ -108,6 +111,11 @@ public class UserAction extends HttpServlet {
         }finally {
             Db.close(resultSet,preparedStatement,connection);
         }
+    }
+
+    private void logout(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getSession().invalidate();
+        resp.sendRedirect("default.jsp");
     }
 
         @Override
