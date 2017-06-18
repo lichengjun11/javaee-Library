@@ -18,6 +18,6 @@
     </c:if>
   ${sessionScope.username}
     <hr>
-<p><a href="logout.jsp">注销</a></p>
+<p><a href="user?action=logout">注销</a></p>
   </body>
 </html>

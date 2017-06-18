@@ -19,5 +19,7 @@
 </c:if>
 ${sessionScope.username}
 <hr>
+<p><a href="user?action=logout">注销</a></p>
+
 </body>
 </html>

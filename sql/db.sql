@@ -11,6 +11,8 @@ CREATE TABLE javaee_library.user(
   role VARCHAR(255) NOT NULL DEFAULT '用户' COMMENT '角色： 管理员；用户'
 )COMMENT '用户表';
 
+
+
 INSERT INTO javaee_library.user(username, password,role) VALUE ('admin',123,'管理员');
 
 SELECT *
